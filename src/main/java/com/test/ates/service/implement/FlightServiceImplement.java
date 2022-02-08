@@ -34,6 +34,7 @@ public class FlightServiceImplement implements FlightService {
 			flight.setDepartureAirportIATACode(flightDTO.getDepartureAirportIATACode());
 			flight.setDepartureDate(timestamp);
 			
+			
 			flightRepository.save(flight);
 			
 			flightDTO.setFlightId(flight.getId());
