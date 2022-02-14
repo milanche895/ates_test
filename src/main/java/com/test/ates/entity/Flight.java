@@ -1,13 +1,24 @@
 package com.test.ates.entity;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 
 @Entity
 @Table(name = "flight")
@@ -29,6 +40,11 @@ public class Flight {
 	@Column(name = "departure_date")
 	private Timestamp departureDate;
 
+	@OneToMany(mappedBy="flight",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	List<Baggage> baggage = new ArrayList<Baggage>();
+	
+	@OneToMany(mappedBy="flight",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	List<Cargo> cargo = new ArrayList<Cargo>();
 	
 	public Long getId() {
 		return id;
@@ -68,6 +84,22 @@ public class Flight {
 
 	public void setDepartureDate(Timestamp departureDate) {
 		this.departureDate = departureDate;
+	}
+
+	public List<Baggage> getBaggage() {
+		return baggage;
+	}
+
+	public void setBaggage(List<Baggage> baggage) {
+		this.baggage = baggage;
+	}
+
+	public List<Cargo> getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(List<Cargo> cargo) {
+		this.cargo = cargo;
 	}
 	
 }
