@@ -1,6 +1,5 @@
 package com.test.ates.DTO;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import com.test.ates.entity.Baggage;
